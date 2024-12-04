@@ -34,6 +34,8 @@ class DailyEmailCommand extends Command
         $this->setDescription('Sends an email to the next recipient in the list.');
     }
 
+    // TODO cron
+    // TODO config email
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $recipients = json_decode(file_get_contents($this->recipientsFilePath), true);
@@ -70,7 +72,7 @@ class DailyEmailCommand extends Command
         ]);
 
         return (new Email())
-            ->from('your_email@example.com')
+            ->from('your_email@example.com') // TODO
             ->to($recipient->getEmail())
             ->subject('Your Daily Message')
             ->html($htmlContent);
